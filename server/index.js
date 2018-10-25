@@ -7,5 +7,5 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const DataHelpers = require("./lib/data-helpers.js")(db);
-const tweetsRoutes = require("./routes/tweets")(DataHelpers);
-app.use("/tweets", tweetsRoutes);
+const productsRoutes = require("./routes/products")(DataHelpers);
+app.use("/products", productsRoutes);
