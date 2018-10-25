@@ -9,3 +9,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const DataHelpers = require("./lib/data-helpers.js")(db);
 const productsRoutes = require("./routes/products")(DataHelpers);
 app.use("/products", productsRoutes);
+
+app.listen(PORT, () => {
+  console.log("App listening on port " + PORT);
+});

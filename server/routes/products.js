@@ -1,12 +1,10 @@
-const userHelper    = require("../lib/util/user-helper")
-
 import express from 'express';
 const productsRoutes  = express.Router();
 
 export default function(DataHelpers) {
 
   productsRoutes.get("/products", function(req, res) {
-    DataHelpers.getTweets((err, products) => {
+    DataHelpers.getProducts((err, products) => {
       if (err) {
         res.status(500).json({ error: err.message });
       } else {
@@ -21,7 +19,7 @@ export default function(DataHelpers) {
       return;
     }
 
-    DataHelpers.saveTweet(tweet, (err) => {
+    DataHelpers.saveProduct(tweet, (err) => {
       if (err) {
         res.status(500).json({ error: err.message });
       } else {
