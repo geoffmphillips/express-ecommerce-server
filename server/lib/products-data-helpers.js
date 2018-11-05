@@ -1,4 +1,4 @@
-export default function productsDataHelpers(db) {
+export default function(db) {
   return {
 
     saveTweet: function(newTweet, callback) {
