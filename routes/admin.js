@@ -1,25 +1,25 @@
 import express from 'express';
-const productsRoutes  = express.Router();
+const adminRoutes  = express.Router();
 
 export default function(DataHelpers) {
 
-  productsRoutes.get("/products", function(req, res) {
-    DataHelpers.getProducts((err, products) => {
+  adminRoutes.get("/admin", function(req, res) {
+    DataHelpers.getadmin((err, admin) => {
       if (err) {
         res.status(500).json({ error: err.message });
       } else {
-        res.json(products);
+        res.json(admin);
       }
     });
   });
 
-  productsRoutes.post("/products/:id", function(req, res) {
+  adminRoutes.post("/admin/:id", function(req, res) {
     if (!req.body.text) {
       res.status(400).json({ error: 'invalid request: no data in POST body'});
       return;
     }
 
-    DataHelpers.saveProduct(tweet, (err) => {
+    DataHelpers.saveAdmin(tweet, (err) => {
       if (err) {
         res.status(500).json({ error: err.message });
       } else {
@@ -28,6 +28,6 @@ export default function(DataHelpers) {
     });
   });
 
-  return productsRoutes;
+  return adminRoutes;
 
 }

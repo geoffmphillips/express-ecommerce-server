@@ -1,36 +1,25 @@
-const userHelper    = require("../lib/util/user-helper")
-
-const express       = require('express');
-const tweetsRoutes  = express.Router();
+import express from 'express';
+const productsRoutes  = express.Router();
 
 export default function(DataHelpers) {
 
-  tweetsRoutes.get("/", function(req, res) {
-    DataHelpers.getTweets((err, tweets) => {
+  productsRoutes.get("/products", function(req, res) {
+    DataHelpers.getProducts((err, products) => {
       if (err) {
         res.status(500).json({ error: err.message });
       } else {
-        res.json(tweets);
+        res.json(products);
       }
     });
   });
 
-  tweetsRoutes.post("/", function(req, res) {
+  productsRoutes.post("/products/:id", function(req, res) {
     if (!req.body.text) {
       res.status(400).json({ error: 'invalid request: no data in POST body'});
       return;
     }
 
-    const user = req.body.user ? req.body.user : userHelper.generateRandomUser();
-    const tweet = {
-      user: user,
-      content: {
-        text: req.body.text
-      },
-      created_at: Date.now()
-    };
-
-    DataHelpers.saveTweet(tweet, (err) => {
+    DataHelpers.saveProduct(tweet, (err) => {
       if (err) {
         res.status(500).json({ error: err.message });
       } else {
@@ -39,6 +28,6 @@ export default function(DataHelpers) {
     });
   });
 
-  return tweetsRoutes;
+  return productsRoutes;
 
 }
