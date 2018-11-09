@@ -1,1 +1,1 @@
-Testing React stuff with a node backend
+Node server for ecommerce app
